@@ -1,21 +1,24 @@
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: truename: Python CI
+name: Python CI
 
 on:
   push:
-  pull_request:
+    branches: [ "main" ]
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: "3.10"
 
-      - run: pip install pytest
+      - name: Install dependencies
+        run: pip install pytest
 
-      - run: pytest
+      - name: Run tests
+        run: pytest
