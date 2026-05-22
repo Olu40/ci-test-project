@@ -2,9 +2,8 @@ name: Python CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
 
 jobs:
   test:
@@ -20,10 +19,10 @@ jobs:
           python-version: "3.10"
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install pytest pytest-cov flake8
 
       - name: Lint code
         run: flake8 .
 
-      - name: Run tests with coverage
+      - name: Run tests
         run: pytest --cov=.
